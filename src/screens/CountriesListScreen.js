@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Flag from 'react-native-flags';
 import Toast from 'react-native-simple-toast';
-import {FlatList} from 'react-native';
+import {FlatList, ScrollView, RefreshControl} from 'react-native';
 import {SearchBar, List} from 'react-native-elements'
 
 import Loader from '../components/shared/Loader';
@@ -32,6 +32,10 @@ class CountriesListScreen extends React.Component {
     }
 
     componentDidMount() {
+       this.loadCountries();
+    }
+
+    loadCountries = () => {
         this.props.countriesActions.getCountries().then((response) => {
             this.setState({
                 loading: false,
@@ -46,7 +50,7 @@ class CountriesListScreen extends React.Component {
                 Toast.show(error.message || 'Error occured on loading countries');
             });
         });
-    }
+    };
 
     renderHeader = () => {
         return (
@@ -89,6 +93,12 @@ class CountriesListScreen extends React.Component {
         this.setState({countries: filtered});
     };
 
+    onRefresh = () => {
+        this.setState({loading: true}, () => {
+            this.loadCountries();
+        });
+    };
+
     render() {
         if (this.state.loading)
             return <Loader/>;
@@ -97,7 +107,12 @@ class CountriesListScreen extends React.Component {
             return null;
 
         return (
-            <List containerStyle={styles.listContainer}>
+            <ScrollView containerStyle={styles.listContainer} refreshControl={
+                <RefreshControl
+                    refreshing={this.state.loading}
+                    onRefresh={()=>{this.onRefresh()}}
+                />
+            }>
                 <FlatList
                     data={this.state.countries}
                     removeClippedSubviews={true}
@@ -113,7 +128,7 @@ class CountriesListScreen extends React.Component {
                     maxToRenderPerBatch={2}
                     onEndReachedThreshold={0.5}
                 />
-            </List>
+            </ScrollView>
         );
     }
 }

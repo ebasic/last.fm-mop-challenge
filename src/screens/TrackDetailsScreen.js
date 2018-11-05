@@ -31,13 +31,15 @@ class TrackDetailsScreen extends React.Component {
                 loading: false
             }, () => {
                 if (!this.props.trackDetails)
-                    Toast.show('Error occured on loading track details');
+                    Toast.show('Error occured on loading track info');
+
+                Toast.show('Track info loaded');
             });
         }).catch(error => {
             this.setState({
                 loading: false
             }, () => {
-                Toast.show(error.response.data.message || 'Error occured on loading track details');
+                Toast.show(error.response.data.message || 'Error occured on loading track info');
             });
         });
     }
