@@ -32,5 +32,5 @@ NOTES:
 - ##### Tags on `TrackDetailsScreen` are clickable and onPress event navigates to tag URL
 - ##### Not covered with tests
 
-- ###IMPORTANT: 'Love track' functionality returns 'invalid method signature' error - I think it is some kind of error on server side because generated method signature is valid, using it I was able to create session key by calling `auth.getMobileSession` API, but with the same method signature and retrieved session key, I get error on `love.track` API
+- ###IMPORTANT: 'Love track' functionality returns 'invalid method signature' error - Don't know why this error is returned as long as I was able to retrieve session key by calling `getMobileSession` API by using the same api signature (`api_sig`). API signature is generated according to Last.fm API documentation 
 
