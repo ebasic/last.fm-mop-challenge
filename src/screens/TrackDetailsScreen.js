@@ -79,8 +79,6 @@ class TrackDetailsScreen extends React.Component {
 
             let sessionKey = response.data.session.key;
 
-            console.log("Session key: ", sessionKey);
-
             Lastfm_API.loveTrack(track.name, track.artist.name, sessionKey).then(response => {
                 if(response && response.data && response.data.error)
                     return Toast.show(response.data.message || 'Error occured on track like');
