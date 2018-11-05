@@ -22,7 +22,7 @@ NOTES:
 --
 
 - ##### Used Redux for state management 
-- ##### Added axios cache adapter for loading data on `CountriesListScreen` 
+- ##### Added axios cache adapter for caching data on `CountriesListScreen` mounting (data could be saved into AsyncStorage as well)
 - ##### Implemented infinite scroll on `TopTracksByCountryScreen` 
 - ##### Implemented searchbar on large lists
 - ##### Optimized large lists (FlatList optimization)
@@ -31,6 +31,9 @@ NOTES:
 - ##### Added `Loader` and `Toaster`
 - ##### Tags on `TrackDetailsScreen` are clickable and onPress event navigates to tag URL
 - ##### Not covered with tests
+- ##### Sensitive data kept in config file, did not pay attention for securing it as the focus was on functionalities mentioned in challenge (but sensitive data could be stored in Firebase) 
+
+---
 
 - ###IMPORTANT: 'Love track' functionality returns 'invalid method signature' error - Don't know why this error is returned as long as I was able to retrieve session key by calling `getMobileSession` API by using the same api signature (`api_sig`). API signature is generated according to Last.fm API documentation 
 
